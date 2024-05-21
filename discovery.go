@@ -2,17 +2,22 @@ package orca
 
 import (
 	"fmt"
+	"log/slog"
 	"net"
 )
 
-type Discovery struct{}
+type Discovery struct {
+	Territory Territory
+}
 
-func NewDiscovery() *Discovery {
-	d := Discovery{}
+func NewDiscovery(t Territory) *Discovery {
+	d := Discovery{Territory: t}
 	return &d
 }
 
 func (d *Discovery) Listen() error {
+	slog.Info("start listening")
+
 	adr, err := net.ResolveUDPAddr("udp4", ":7200")
 
 	if err != nil {

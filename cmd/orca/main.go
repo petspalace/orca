@@ -5,6 +5,8 @@ import (
 )
 
 func main() {
-    t := orca.NewDiscovery()
-    t.Listen()
+    t := orca.NewTerritory([16]byte{0})
+
+    d := orca.NewDiscovery(t)
+    d.Listen()
 }
